@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+    <h1 class="mb-4"><i class="fa-regular fa-rectangle-list"></i> Listado de vehículos</h1>
+{% endblock %}
+
+{% block body %}
+
+    {% if vehicles %}          
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-xmarks-lines"></i> Matrícula</th>
+                    <th><i class="fa-solid fa-cube"></i> Modelo</th>
+                    <th><i class="fa-solid fa-bookmark"></i> Marca</th>
+                    <th><i class="fa-solid fa-brush"></i> Color</th>
+                    <th><i class="fa-solid fa-money-bills"></i> Precio</th>
+                    <th><i class="fa-solid fa-gears"></i> Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                    <tr>
+                        <td><b><i class="fa-solid fa-car-side"></i> {{ vehicle.plate }}</b></td>
+                        <td>{{ vehicle.model }}</td>
+                        <td><span class="badge bg-primary">{{ vehicle.brand }}</span></td>
+                        <td>{{ vehicle.color }}</td>
+                        <td>{{ vehicle.price }} €</td>
+                        <td>
+                            <a href="{{ path('vehicle_detail', {'id': vehicle.id}) }}"><button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-eye"></i> Ver</button></a>
+                            <a href="{{ path('vehicle_reregister', {'id': vehicle.id}) }}"><button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i> Rematricular</button></a>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#sellModal-{{ vehicle.id }}"><i class="fa-solid fa-sack-dollar"></i> Vender</button>
+                        </td>
+
+                        <!-- Modal Vender -->
+                        <div class="modal fade" id="sellModal-{{ vehicle.id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                            
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title"><i class="fa-solid fa-sack-dollar"></i> Vender vehículo</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                            
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="alert alert-danger">
+                                            <strong>¡Atención!</strong> ¿Estás seguro/a de que deseas vender este vehículo con matrícula '{{ vehicle.plate }}'?
+                                        </div>
+                                    
+                                    </div>
+                            
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                                        <a href="{{ path('sell_vehicle', {'id': vehicle.id}) }}"><button type="button" class="btn btn-danger"><i class="fa-solid fa-sack-dollar"></i> Vender</button></a>
+                                    </div>
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <strong>¡Información!</strong> No hay ningún vehículo en venta actualmente.
+        </div>
+    {% endif %}
+{% endblock %}

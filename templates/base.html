@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Vehicles Frontend</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+        {# Incluye Bootstrap CSS #}
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+
+        {# Incluye FontAwesome CSS #}
+        <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+
+        {# Incluye Bootstrap JavaScript #}
+        <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    </head>
+    <body>
+
+        <div class="p-5 bg-primary text-white text-center">
+            <h1><i class="fa-solid fa-car"></i> Gestión de Vehículos</h1>
+            <p>Gestione la venta de vehículos de manera simple.</p> 
+        </div>
+        
+        {% block navbar %}
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('vehicles_list') }}"><i class="fa-regular fa-rectangle-list"></i> Listado de vehículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('vehicles_create') }}"><i class="fa-solid fa-circle-plus"></i> Añadir vehículo</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        {% endblock %}
+        
+        <div class="container mt-5">
+            <div class="row">
+                {% block subtitle %}{% endblock %}
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        
+        <div class="mt-5 p-4 bg-dark text-white text-center">
+            <p>Gestión de vehículos &copy; 2023 - Carlos Gómez Pino <a href="mailto:cgpino34@gmail.com">(cgpino34@gmail.com)</p>
+        </div>
+    </body>
+</html>

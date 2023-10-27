@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+    <h1 class="mb-4"><i class="fa-solid fa-circle-plus"></i> Añadir vehículo</h1>
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.plate, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.model, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.brand, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.color, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.image_path, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-md-6 my-2">
+                    {{ form_row(form.price, { 'attr': {'class': 'form-control', 'step': '0.01'} }) }}
+                </div>
+                <div class="my-2">
+                    {{ form_row(form.submit, { 'attr': {'class': 'btn btn-primary'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
