@@ -18,6 +18,9 @@ Una vez instalada y arrancada la aplicación, para poder probarla podemos ejecut
 
 ## Capturas de Pantalla
 ![](public/captura1.jpg)
+
 ![](public/captura2.jpg)
+
 ![](public/captura3.jpg)
+
 ![](public/captura4.jpg)
