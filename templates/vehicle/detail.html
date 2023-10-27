@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+    <h1 class="mb-4"><i class="fa-solid fa-car-side"></i> Detalles del vehículo</h1>
+{% endblock %}
+
+{% block body %}
+    <div class="d-inline-block">
+        <a href="{{ path('vehicle_reregister', {'id': vehicle.id}) }}"><button type="button" class="btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i> Rematricular</button></a>
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#sellModal"><i class="fa-solid fa-sack-dollar"></i> Vender</button>
+    </div>
+
+    <!-- Modal Vender -->
+    <div class="modal fade" id="sellModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa-solid fa-sack-dollar"></i> Vender vehículo</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <strong>¡Atención!</strong> ¿Estás seguro/a de que deseas vender este vehículo con matrícula '{{ vehicle.plate }}'?
+                    </div>
+                
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                    <a href="{{ path('sell_vehicle', {'id': vehicle.id}) }}"><button type="button" class="btn btn-danger"><i class="fa-solid fa-sack-dollar"></i> Vender</button></a>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4 p-5 bg-secondary text-white rounded">
+        <div class="row">
+            <div class="col-sm-5">
+                <p><i class="fa-solid fa-xmarks-lines"></i> Matrícula: {{ vehicle.plate }}</p>
+                <p><i class="fa-solid fa-cube"></i> Modelo: {{ vehicle.model }}</p>
+                <p><i class="fa-solid fa-bookmark"></i> Marca: <span class="badge bg-primary">{{ vehicle.brand }}</span></p>
+                <p><i class="fa-solid fa-brush"></i> Color: {{ vehicle.color }}</p>
+                <p><i class="fa-solid fa-money-bills"></i> Precio: {{ vehicle.price }} €</p>
+            </div>
+            <div class="col-sm-5">
+                <img src="{{ vehicle.image_path }}" class="img-thumbnail" alt="Vehicle Image" width="350" height="300"> 
+            </div>
+        </div>
+    </div>
+{% endblock %}
